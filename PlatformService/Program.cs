@@ -1,7 +1,8 @@
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<AppDbContext>();
-builder.Services.AddDbContext<AppDbContext>(opt =>
-opt.UseInMemoryDatabase("InMem"));
+builder.Services.AddDbContext<AppDbContext>(opt =>{
+opt.UseInMemoryDatabase("InMem");
+});
 builder.Services.AddScoped<IPlatformRepo, PlatformRepo>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

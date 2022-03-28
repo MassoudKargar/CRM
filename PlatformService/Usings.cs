@@ -5,3 +5,4 @@ global using PlatformService.Data;
 global using PlatformService.Repositories;
 global using AutoMapper;
 global using PlatformService.Dtos;
+global using Microsoft.AspNetCore.Mvc;
