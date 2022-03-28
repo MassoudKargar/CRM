@@ -15,7 +15,7 @@ public static class PrepDb
         {
             return;
         }
-        if (context.Platforms?.Any() is false)
+        if (!context.Platforms.Any())
         {
             Console.WriteLine("--> Seeding Data...");
             context.Platforms.AddRange(
