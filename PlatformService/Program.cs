@@ -4,10 +4,12 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
     opt.UseInMemoryDatabase("InMem");
 });
 builder.Services.AddScoped<IPlatformRepo, PlatformRepo>();
+builder.Services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddSwaggerGen();
+System.Console.WriteLine($"--> CommandService Endpoint {builder.Configuration["CommandService"]}");
 var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {

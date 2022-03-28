@@ -6,3 +6,7 @@ global using PlatformService.Repositories;
 global using AutoMapper;
 global using PlatformService.Dtos;
 global using Microsoft.AspNetCore.Mvc;
+global using PlatformService.SyncDataServices.Http;
+global using System.Text.Json;
+global using System.Text;
+

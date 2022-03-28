@@ -5,11 +5,11 @@ public static class PrepDb
     {
         using (var serviceScope = app.ApplicationServices.CreateScope())
         {
-            SeedData(context: serviceScope.ServiceProvider.GetRequiredService<AppDbContext>());
+            SeedData(context: serviceScope.ServiceProvider.GetService<AppDbContext>());
         }
 
     }
-    private static void SeedData(AppDbContext context)
+    private static void SeedData(AppDbContext? context)
     {
         if (context is null)
         {

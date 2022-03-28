@@ -1,5 +1,5 @@
 namespace PlatformService.Repositories;
-public interface IPlatformRepo : IDisposable
+public interface IPlatformRepo
 {
     bool SaveChanges();
     IEnumerable<Platform> GetAllPlatforms();
