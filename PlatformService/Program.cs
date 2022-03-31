@@ -1,8 +1,18 @@
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<AppDbContext>(opt =>
+if (builder.Environment.IsProduction())
 {
-    opt.UseInMemoryDatabase("InMem");
-});
+    Console.WriteLine("--> Using SqlServer Db");
+    builder.Services.AddDbContext<AppDbContext>(opt =>
+        opt.UseSqlServer(builder.Configuration.GetConnectionString("PlatformConn")));
+}
+else
+{
+    Console.WriteLine("--> Using InMem Db");
+    builder.Services.AddDbContext<AppDbContext>(opt =>
+    {
+        opt.UseInMemoryDatabase("InMem");
+    });
+}
 builder.Services.AddScoped<IPlatformRepo, PlatformRepo>();
 builder.Services.AddHttpClient<ICommandDataClient, HttpCommandDataClient>();
 builder.Services.AddControllers();
@@ -16,8 +26,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
-app.PrepPopulation();
+app.PrepPopulation(app.Environment);
 app.Run();

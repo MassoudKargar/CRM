@@ -1,13 +1,11 @@
 namespace PlatformService.Repositories;
 public class PlatformRepo : IPlatformRepo
 {
-    private bool disposedValue;
-
     public PlatformRepo(AppDbContext context)
     {
         Context = context;
     }
-    private AppDbContext Context { get; }
+    private AppDbContext Context { get; } = null!;
 
     void IPlatformRepo.CreatePlatform(Platform platform)
     {
@@ -18,8 +16,8 @@ public class PlatformRepo : IPlatformRepo
     IEnumerable<Platform> IPlatformRepo.GetAllPlatforms() =>
         Context.Platforms.AsEnumerable();
 
-    Platform? IPlatformRepo.GetPlatformById(int id) =>
-        Context.Platforms.FirstOrDefault(f => f.Id == id);
+    Platform IPlatformRepo.GetPlatformById(int id) =>
+        Context.Platforms.First(f => f.Id == id);
 
     bool IPlatformRepo.SaveChanges() =>
         (Context.SaveChanges() >= 0);
