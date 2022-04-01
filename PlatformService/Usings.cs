@@ -9,4 +9,6 @@ global using Microsoft.AspNetCore.Mvc;
 global using PlatformService.SyncDataServices.Http;
 global using System.Text.Json;
 global using System.Text;
-
+global using System.Reflection;
+global using RabbitMQ.Client;
+global using PlatformService.AsyncDataServices;

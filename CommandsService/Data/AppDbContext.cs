@@ -1,15 +1,15 @@
-
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-namespace PlatformService.Data;
-
+using System.Xml;
+namespace CommandsService.Data;
 public class AppDbContext : DbContext
 {
-    public AppDbContext(DbContextOptions<AppDbContext> options)
-     : base(options)
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
+        Commands = null!;
+        platforms = null!;
     }
-    public DbSet<Platform> Platforms { get; set; } = null!;
+
+    public DbSet<Command> Commands { get; set; }
+    public DbSet<Platform> platforms { get; set; }
 
     protected override void OnModelCreating(ModelBuilder b)
     {
